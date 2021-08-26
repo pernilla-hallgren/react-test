@@ -27,7 +27,7 @@
 
 - [React](https://reactjs.org/)
 - [Bootstrap](https://getbootstrap.com/)
-- [Redux] (https://redux.js.org/)
+- [Redux](https://redux.js.org/)
 
 <!-- GETTING STARTED -->
 
