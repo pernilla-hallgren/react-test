@@ -9,15 +9,12 @@ const CreateUser = () => {
   const btnStyle = {
     borderRadius: '20px', 
     border: '0', 
+    color: 'white'
   }
-
-
-
+  
   const [name, setName] = useState(""),
         [job, setJob] = useState(''),
-        [newUser, setNewUser] = useState({}),
-        [errorName, setErrorName] = useState(null),
-        [errorJob, setErrorJob] = useState(null);
+        [newUser, setNewUser] = useState({});
   
   const getName = (e) => setName(e),
         getJob = (e) => setJob(e);
@@ -38,41 +35,39 @@ const CreateUser = () => {
       })
       .catch(error => {
         console.log(error)
-        // setErrorEmail(error.response.data.error.email);
-        // setErrorPwd(error.response.data.error.password)
       })
   }
   console.log(newUser);
+
 
   return (
     <>
       <Menu />
       <div className="container justify-content-center text-center">
         <div className="mt-5 mb-5">
-          <h2>SIGN-UP NOW</h2>
+          <h2>CREATE USER</h2>
           <p>Please fill in your details to create a user</p>
         </div>
 
 
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
           <div className="form-group">
- 
             <Input 
               name="name"
               type="text"
               getState={getName}
               placeholder="Enter Name"
-              id="register-email"
+              id="name"
             />
+            
           </div>
           <div className="form-group">
-         
             <Input 
               name="job"
               type="text"
               getState={getJob}
               placeholder="Enter Job"
-              id="pwd"
+              id="job"
             />
 
           {/* <div className="form-group">
@@ -84,6 +79,7 @@ const CreateUser = () => {
               id="pwd-conf"
             />
           </div> */}
+          
             <div className="form-group m-5">
                 <button type="submit" className="btn" style={btnStyle}>Create User</button>
             </div>

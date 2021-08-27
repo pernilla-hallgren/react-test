@@ -1,13 +1,20 @@
 // import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { GET } from '../services/requests';
-import { Form, FormControl, Button, Container, Row, } from "react-bootstrap";
+import { Container, Row, } from "react-bootstrap";
 import Menu from '../menu';
 import UserCard from '../user-card';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
   const [userData, setUserData] = useState();
+
+  const btnStyle = {
+    borderRadius: '20px', 
+    border: '0', 
+    color: 'white'
+  }
 
   useEffect(() => {
 
@@ -25,12 +32,10 @@ const Home = () => {
   return (
     <>
       <Menu />
-      <div>
-        <div>
-          {/* {userData.data[0].email} */}
-          {/* <UserCard /> */}
-          
-          {/* {userData ? userData.map(user => (UserCard(user) : <div> LOADING USERS</div>))} */}
+        <div  className="m-3 text-center">
+          <Link to="/create-user">
+              <button type="submit" className="btn" style={btnStyle}>Create User</button>
+          </Link>
         </div>
 
          <Container>
@@ -38,11 +43,6 @@ const Home = () => {
                 {userData ? userData.data.map((data) => (UserCard(data))) : <div> LOADING USERS</div>}
             </Row>
           </Container>
-        
-        
-      </div>
-
-
     </>
   )
 };

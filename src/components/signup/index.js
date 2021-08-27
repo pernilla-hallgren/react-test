@@ -6,11 +6,6 @@ import ErrorMessage from '../../shared/components/error-message';
 
 const Signup = () => {
 
-  const btnStyle = {
-    borderRadius: '20px', 
-    border: '0', 
-  }
-
   const [email, setEmail] = useState(""),
         [pwd, setPwd] = useState(''),
         [errorEmail, setErrorEmail] = useState(null),
@@ -36,6 +31,12 @@ const Signup = () => {
         setErrorEmail(error.response.data.error.email);
         setErrorPwd(error.response.data.error.password)
       })
+  }
+
+  const btnStyle = {
+    borderRadius: '20px', 
+    border: '0', 
+    color: 'white'
   }
 
   return (

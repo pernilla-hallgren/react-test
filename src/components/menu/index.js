@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 const Menu = () => {
   
@@ -8,21 +9,22 @@ const Menu = () => {
     fontSize: '17px',
     fontWeight: '300',
     background: '#283041',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: '#CECFD3',
   }
 
   return (
     <>
       <Navbar style={color} expand="lg" variant="dark">
-        <Navbar.Brand style={color} href="#home">React Test</Navbar.Brand>
+        <NavLink style={color} to="/">React Test</NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse style={color}  id="navbar-toggle">
           <Nav className="me-auto">
-            <Nav.Link style={color} to="/">Home</Nav.Link>
-            <Nav.Link style={color} to="/sign-up">Sign Up</Nav.Link>
-            <Nav.Link style={color} to="/login">Login</Nav.Link>
-            <Nav.Link style={color} to="/profile">Profile</Nav.Link>
-            <Nav.Link style={color} to="/logout">Logout</Nav.Link>
+            <NavLink style={color} to="/">Home</NavLink>
+            <NavLink style={color} to="/sign-up">Sign Up</NavLink>
+            <NavLink style={color} to="/login">Login</NavLink>
+            <NavLink style={color} to="/profile">Profile</NavLink>
+            <NavLink style={color} to="/logout">Logout</NavLink>
           </Nav>
         </Navbar.Collapse>     
       </Navbar>
