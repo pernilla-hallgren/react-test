@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
 
-    GET('users?page=2').then(response => {
+    GET('users?per_page=20').then(response => {
       console.log(response);
       setUserData(response.data);
     }).catch((error) => {

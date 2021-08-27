@@ -8,6 +8,8 @@ import Signup from './components/signup';
 
 
 const App= () => {
+
+
   return (
     <>
       <Router>
@@ -43,6 +45,12 @@ const App= () => {
               exact
               component={Profile}
             /> */}
+
+            <Route 
+              path="/"
+              exact
+              component={Home}
+            />
             
           </Switch>
         </main>

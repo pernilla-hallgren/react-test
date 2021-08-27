@@ -23,6 +23,21 @@
   background: linear-gradient(89.51deg, #CD5F68 0.81%, #DF7F76 35.87%, #EAB393 89.37%);
 }
 
+.small-btn {
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+  width: 15rem;
+  height: 3rem;
+  margin: 1rem;
+  border-radius: 20px;
+  border: 0;
+  color: white;
+  background: #283041;
+}
+
+.small-btn:hover {
+  background: #353D4F;
+}
+
 /* INPUT FIELD STYLES */
 .input-field {
   background: #5D6475;
