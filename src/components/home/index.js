@@ -43,6 +43,10 @@ const Home = () => {
                 {userData ? userData.data.map((data) => (UserCard(data))) : <div> LOADING USERS</div>}
             </Row>
           </Container>
+
+          
+
+
     </>
   )
 };

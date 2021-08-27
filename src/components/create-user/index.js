@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { POST } from '../services/requests';
 import Menu from '../menu';
 import Input from '../../shared/components/input';
-import ErrorMessage from '../../shared/components/error-message';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 
 const CreateUser = () => {
 
@@ -69,16 +70,6 @@ const CreateUser = () => {
               placeholder="Enter Job"
               id="job"
             />
-
-          {/* <div className="form-group">
-            <Input 
-              name="pwdConf"
-              type="text"
-              getState={getPwdConf}
-              placeholder="Password Confirmation"
-              id="pwd-conf"
-            />
-          </div> */}
           
             <div className="form-group m-5">
                 <button type="submit" className="btn" style={btnStyle}>Create User</button>

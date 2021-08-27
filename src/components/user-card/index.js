@@ -11,7 +11,6 @@ export default function UserCard(data) {
     margin: '15px', 
     borderRadius: '20px',
     boxShadow: '3px 3px 4px rgba(0, 0, 0, 0.25)',
-
   }
 
   const cardImgStyle = {
@@ -25,6 +24,12 @@ export default function UserCard(data) {
     fontSize: '17px',
     fontWeight: '300',
   }
+  
+  const btnStyle = {
+    borderRadius: '20px', 
+    border: '0', 
+    color: 'white'
+  }
 
   return (
     <>
@@ -37,12 +42,12 @@ export default function UserCard(data) {
                 <Card.Text style={textStyle}>Last name: {last_name}</Card.Text>
                 <Card.Text style={textStyle}>Email: {email}</Card.Text>
             </Card.Body>
-            {/* <Card.Footer className=" d-flex justify-content-lg-between">
-              <Button variant="#2A324B" style={btnStyle} onClick={updatefav}><Icon.StarFill style={FooterStyle}></Icon.StarFill></Button>
-              <Card.Link href={`/snus-review/${id}`} > <Button variant="#2A324B" style={btnStyle}>
-                  <Icon.ChatLeftTextFill style={FooterStyle}></Icon.ChatLeftTextFill> </Button>
+            <Card.Footer className=" d-flex justify-content-lg-between">
+              <Card.Link href={`/users/${id}`}> 
+              <Button variant="#2A324B" style={btnStyle}>
+            </Button>
               </Card.Link>
-            </Card.Footer> */}
+            </Card.Footer>
           </Card>
         </Col>
     </>
