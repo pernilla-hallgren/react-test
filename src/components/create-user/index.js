@@ -4,39 +4,45 @@ import Menu from '../menu';
 import Input from '../../shared/components/input';
 import ErrorMessage from '../../shared/components/error-message';
 
-const Signup = () => {
+const CreateUser = () => {
 
   const btnStyle = {
     borderRadius: '20px', 
     border: '0', 
   }
 
-  const [email, setEmail] = useState(""),
-        [pwd, setPwd] = useState(''),
-        [errorEmail, setErrorEmail] = useState(null),
-        [errorPwd, setErrorPwd] = useState(null);
+
+
+  const [name, setName] = useState(""),
+        [job, setJob] = useState(''),
+        [newUser, setNewUser] = useState({}),
+        [errorName, setErrorName] = useState(null),
+        [errorJob, setErrorJob] = useState(null);
   
-  const getEmail = (e) => setEmail(e),
-        getPwd = (e) => setPwd(e);
+  const getName = (e) => setName(e),
+        getJob = (e) => setJob(e);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      email: email,
-      password: pwd,
+      name: name,
+      job: job,
     };
 
-    POST('register', data)
+    POST('users', data)
       .then(data => {
         console.log(data)
-        localStorage.setItem('id', data.data.id);
-        localStorage.setItem('token', data.data.token);
+        setNewUser(data)
+        // localStorage.setItem('id', data.data.id);
+        // localStorage.setItem('token', data.data.token);
       })
       .catch(error => {
-        setErrorEmail(error.response.data.error.email);
-        setErrorPwd(error.response.data.error.password)
+        console.log(error)
+        // setErrorEmail(error.response.data.error.email);
+        // setErrorPwd(error.response.data.error.password)
       })
   }
+  console.log(newUser);
 
   return (
     <>
@@ -44,28 +50,28 @@ const Signup = () => {
       <div className="container justify-content-center text-center">
         <div className="mt-5 mb-5">
           <h2>SIGN-UP NOW</h2>
-          <p>Please fill in your details and create an account</p>
+          <p>Please fill in your details to create a user</p>
         </div>
 
 
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
           <div className="form-group">
-            {errorEmail && <ErrorMessage message={errorEmail}/>}
+ 
             <Input 
-              name="email"
+              name="name"
               type="text"
-              getState={getEmail}
-              placeholder="Email"
+              getState={getName}
+              placeholder="Enter Name"
               id="register-email"
             />
           </div>
           <div className="form-group">
-            {setErrorPwd && <ErrorMessage message={errorPwd}/>}
+         
             <Input 
-              name="password"
+              name="job"
               type="text"
-              getState={getPwd}
-              placeholder="Password"
+              getState={getJob}
+              placeholder="Enter Job"
               id="pwd"
             />
 
@@ -79,7 +85,7 @@ const Signup = () => {
             />
           </div> */}
             <div className="form-group m-5">
-                <button type="submit" className="btn" style={btnStyle}>Sign Up</button>
+                <button type="submit" className="btn" style={btnStyle}>Create User</button>
             </div>
           </div>
         </form>
@@ -88,4 +94,4 @@ const Signup = () => {
   )
 };
 
-export default Signup;
+export default CreateUser;

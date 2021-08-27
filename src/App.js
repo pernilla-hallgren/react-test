@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import CreateUser from './components/create-user';
 
 import Home from './components/home';
 import Signup from './components/signup';
@@ -22,6 +23,12 @@ const App= () => {
               path="/sign-up"
               exact
               component={Signup}
+            />
+
+            <Route 
+              path="/create-user"
+              exact
+              component={CreateUser}
             />
             
           </Switch>

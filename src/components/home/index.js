@@ -10,16 +10,13 @@ const Home = () => {
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    GET('users').then(response => {
+
+    GET('users?page=2').then(response => {
       console.log(response);
       setUserData(response.data);
-    })
-
-    // axios.get('https://reqres.in/api/users')
-    //   .then(response => {
-    //     console.log(response);
-    //     setUserData(response.data.data);
-    //   })
+    }).catch((error) => {
+      console.log(error);
+    });
 
   }, []);
 
@@ -48,6 +45,6 @@ const Home = () => {
 
     </>
   )
-}
+};
 
 export default Home;

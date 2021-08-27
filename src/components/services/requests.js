@@ -16,7 +16,10 @@ export const GET = (url) => {
 export const POST = async (url, data) => {
   return axios(`${API_URL}/${url}`, {
     method: 'POST',
-    data
+    data,
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
 }
 

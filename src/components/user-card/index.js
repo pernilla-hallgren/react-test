@@ -15,7 +15,9 @@ export default function UserCard(data) {
   }
 
   const cardImgStyle = {
-    borderRadius: '20px',
+    border: '1px solid',
+    borderRadius: '50%',
+    padding: '7px',
   }
 
   const textStyle = {
