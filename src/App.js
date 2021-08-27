@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CreateUser from './components/create-user';
 
 import Home from './components/home';
+import Login from './components/login';
 import Signup from './components/signup';
 
 
@@ -26,10 +27,22 @@ const App= () => {
             />
 
             <Route 
+              path="/login"
+              exact
+              component={Login}
+            />
+
+            <Route 
               path="/create-user"
               exact
               component={CreateUser}
             />
+
+            {/* <Route 
+              path="/users/:id"
+              exact
+              component={Profile}
+            /> */}
             
           </Switch>
         </main>
