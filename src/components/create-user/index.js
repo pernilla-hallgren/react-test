@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { POST } from '../services/requests';
 import Menu from '../menu';
 import Input from '../../shared/components/input';

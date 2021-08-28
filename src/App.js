@@ -9,7 +9,6 @@ import Signup from './components/signup';
 
 const App= () => {
 
-
   return (
     <>
       <Router>
@@ -46,11 +45,6 @@ const App= () => {
               component={Profile}
             /> */}
 
-            <Route 
-              path="/"
-              exact
-              component={Home}
-            />
             
           </Switch>
         </main>

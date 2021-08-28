@@ -34,7 +34,7 @@ const Home = () => {
       <Menu />
         <div  className="m-3 text-center">
           <Link to="/create-user">
-              <button type="submit" className="btn" style={btnStyle}>Create User</button>
+              <button className="btn" style={btnStyle}>Create User</button>
           </Link>
         </div>
 
@@ -43,10 +43,6 @@ const Home = () => {
                 {userData ? userData.data.map((data) => (UserCard(data))) : <div> LOADING USERS</div>}
             </Row>
           </Container>
-
-          
-
-
     </>
   )
 };

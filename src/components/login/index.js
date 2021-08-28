@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { POST } from '../services/requests';
+import { Redirect } from 'react-router-dom';
 import Menu from '../menu';
 import Input from '../../shared/components/input';
 import ErrorMessage from '../../shared/components/error-message';
@@ -9,7 +10,8 @@ const Login = () => {
 
   const [email, setEmail] = useState(""),
         [pwd, setPwd] = useState(''),
-        [error, setError] = useState(null);
+        [error, setError] = useState(null),
+        [redirect, setRedirect] = useState(false);
   
   const getEmail = (e) => setEmail(e),
         getPwd = (e) => setPwd(e);
@@ -25,28 +27,24 @@ const Login = () => {
     POST('login', data)
       .then(data => {
         console.log(data)
-        if (data.data.token) {
-          localStorage.setItem("user", JSON.stringify(data.data));
-        }
-        return data.data;
-        // localStorage.setItem('id', data.data.id);
-        // localStorage.setItem('token', data.data.token);  
-        // localStorage.setItem('email', data.data.email)       
+        setRedirect(true);
+        localStorage.setItem('token', JSON.stringify(data.data.token));
+        console.log(data.data.token);
+        return data.data;    
       })
       .catch(error => {
         console.log(error);
-        setError(error.response.data.message);
+        setError(data.error);
       })
   };
-
-
-
-       
+    
   const btnStyle = {
     borderRadius: '20px', 
     border: '0', 
     color: 'white'
   }
+
+  if(redirect) return <Redirect to="/profile"/>;
 
   return (
     <>
@@ -70,6 +68,9 @@ const Login = () => {
               id="register-email"
             />
           </div>
+
+          {error && <ErrorMessage message={error} />}
+
           <div className="form-group">
 
             <Input 
