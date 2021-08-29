@@ -20,7 +20,6 @@ const Input = ({ placeholder, type, name, getState, id }) => {
         id={id}
         maxLength="255"
         className="input-field"
-        required
       />
     </>
   );

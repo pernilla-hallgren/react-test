@@ -1,27 +1,25 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { POST } from '../services/requests';
 import { Redirect } from 'react-router-dom';
 import Menu from '../menu';
 import Input from '../../shared/components/input';
 import ErrorMessage from '../../shared/components/error-message';
-// import ErrorMessage from '../../shared/components/error-message';
 
-const Login = () => {
+const Login = ({ getToken }) => {
 
   const [email, setEmail] = useState(""),
-        [pwd, setPwd] = useState(''),
+        [password, setPassword] = useState(''),
         [error, setError] = useState(null),
         [redirect, setRedirect] = useState(false);
   
   const getEmail = (e) => setEmail(e),
-        getPwd = (e) => setPwd(e);
+        getPassword = (e) => setPassword(e);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     const data = {
       email: email,
-      password: pwd,
+      password: password,
     };
 
     POST('login', data)
@@ -29,22 +27,22 @@ const Login = () => {
         console.log(data)
         setRedirect(true);
         localStorage.setItem('token', JSON.stringify(data.data.token));
-        console.log(data.data.token);
-        return data.data;    
+
+        // getToken(localStorage.getItem('token'))
       })
       .catch(error => {
-        console.log(error);
-        setError(data.error);
+        console.log(error.response.data);
+        setError(error.response.data.error)
       })
   };
-    
+
+  if(redirect) return <Redirect to="/"/>;
+      
   const btnStyle = {
     borderRadius: '20px', 
     border: '0', 
     color: 'white'
   }
-
-  if(redirect) return <Redirect to="/profile"/>;
 
   return (
     <>
@@ -57,26 +55,29 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
 
-          {error && <ErrorMessage message={error} />}
+
+          {!email && error && <ErrorMessage message={error} />}
 
           <div className="form-group">
             <Input 
               name="email"
               type="text"
               getState={getEmail}
+              value={email}
               placeholder="Email"
               id="register-email"
             />
           </div>
 
-          {error && <ErrorMessage message={error} />}
+          {!password && error && <ErrorMessage message={error} />}
 
           <div className="form-group">
 
             <Input 
               name="password"
               type="text"
-              getState={getPwd}
+              getState={getPassword}
+              value={password}
               placeholder="Password"
               id="pwd"
             />
