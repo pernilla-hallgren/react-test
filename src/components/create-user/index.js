@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { POST } from '../services/requests';
 import Menu from '../menu';
 import Input from '../../shared/components/input';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import ErrorMessage from '../../shared/components/error-message';
+import NewUser from '../new-user';
 
 const CreateUser = () => {
 
@@ -15,13 +15,16 @@ const CreateUser = () => {
   
   const [name, setName] = useState(""),
         [job, setJob] = useState(''),
-        [newUser, setNewUser] = useState({});
+        [newUser, setNewUser] = useState({}),
+        [userTrue, setUserTrue] = useState(false),
+        [error, setError] = useState(null);
   
   const getName = (e) => setName(e),
         getJob = (e) => setJob(e);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setUserTrue(true);
     const data = {
       name: name,
       job: job,
@@ -30,12 +33,11 @@ const CreateUser = () => {
     POST('users', data)
       .then(data => {
         console.log(data)
-        setNewUser(data)
-        // localStorage.setItem('id', data.data.id);
-        // localStorage.setItem('token', data.data.token);
+        setNewUser(data.data)
       })
       .catch(error => {
-        console.log(error)
+        console.log(error.response.data);
+        setError(error.response.data.error)
       })
   }
   console.log(newUser);
@@ -52,6 +54,9 @@ const CreateUser = () => {
 
 
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
+
+          {!name && error && <ErrorMessage message={error} />}
+
           <div className="form-group">
             <Input 
               name="name"
@@ -62,6 +67,9 @@ const CreateUser = () => {
             />
             
           </div>
+
+          {!job && error && <ErrorMessage message={error} />}
+
           <div className="form-group">
             <Input 
               name="job"
@@ -74,6 +82,35 @@ const CreateUser = () => {
             <div className="form-group m-5">
                 <button type="submit" className="btn" style={btnStyle}>Create User</button>
             </div>
+
+            {userTrue && newUser ? (
+              
+              <NewUser 
+                name={newUser.name}
+                job={newUser.job}
+                createdAt={newUser.createdAt}
+                id={newUser.id}
+              />
+          ) : (
+            <>
+            </>
+          )}
+            {/* <div>
+              {newUser.name}
+            </div> */}
+              {/* {newUser && ( 
+                  <li>
+                    <div className="card-container">
+                      <p>
+                        <strong>Welcome: {newUser.name}</strong>
+                      </p>
+                      <p>Job: {newUser.job}</p>
+                      <p>Created: {newUser.createdAt}</p>
+                    </div>
+                  </li>
+                  
+                )
+              }; */}
           </div>
         </form>
       </div>

@@ -39,11 +39,11 @@ const App= () => {
               component={CreateUser}
             />
 
-            {/* <Route 
+            <Route 
               path="/users/:id"
               exact
-              component={Profile}
-            /> */}
+             
+            />
 
             
           </Switch>

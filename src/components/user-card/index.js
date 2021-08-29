@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Col } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
 export default function UserCard(data) {
@@ -26,20 +26,12 @@ export default function UserCard(data) {
     fontWeight: '300',
   }
 
-  const btnStyle = {
-    borderRadius: '20px', 
-    border: '0', 
-    color: 'white',
-    background: '#283041',
-  }
-
   return (
     <>
       <Col key={id} sm="12" md="6" lg="4" className="justify-content-center text-center">
         <Card style={cardStyle}>
             <Card.Body style={{ background: '#5D6475' }}>
               <Card.Img style={cardImgStyle} variant="top" src={avatar} />
-            <Card.Title style={{ marginTop: '10px', textTransform: 'uppercase' }}></Card.Title>
               <Card.Text style={textStyle}>First name: {first_name}</Card.Text>
               <Card.Text style={textStyle}>Last name: {last_name}</Card.Text>
               <Card.Text style={textStyle}>Email: {email}</Card.Text>
