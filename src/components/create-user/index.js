@@ -14,7 +14,7 @@ const CreateUser = () => {
   }
   
   const [name, setName] = useState(""),
-        [job, setJob] = useState(''),
+        [job, setJob] = useState(""),
         [newUser, setNewUser] = useState({}),
         [userTrue, setUserTrue] = useState(false),
         [error, setError] = useState(null);
@@ -34,6 +34,10 @@ const CreateUser = () => {
       .then(data => {
         console.log(data)
         setNewUser(data.data)
+        localStorage.setItem('name', (data.data.name));
+        localStorage.setItem('job', (data.data.job));
+        localStorage.setItem('id', (data.data.id));
+        localStorage.setItem('createdAt', (data.data.createdAt));
       })
       .catch(error => {
         console.log(error.response.data);
@@ -41,7 +45,6 @@ const CreateUser = () => {
       })
   }
   console.log(newUser);
-
 
   return (
     <>
@@ -80,7 +83,7 @@ const CreateUser = () => {
             />
           
             <div className="form-group m-5">
-                <button type="submit" className="btn" style={btnStyle}>Create User</button>
+              <button type="submit" className="btn" style={btnStyle}>Create User</button>
             </div>
 
             {userTrue && newUser ? (
@@ -95,22 +98,7 @@ const CreateUser = () => {
             <>
             </>
           )}
-            {/* <div>
-              {newUser.name}
-            </div> */}
-              {/* {newUser && ( 
-                  <li>
-                    <div className="card-container">
-                      <p>
-                        <strong>Welcome: {newUser.name}</strong>
-                      </p>
-                      <p>Job: {newUser.job}</p>
-                      <p>Created: {newUser.createdAt}</p>
-                    </div>
-                  </li>
-                  
-                )
-              }; */}
+          
           </div>
         </form>
       </div>

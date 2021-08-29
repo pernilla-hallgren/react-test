@@ -36,7 +36,7 @@ const Login = ({ getToken }) => {
       })
   };
 
-  if(redirect) return <Redirect to="/"/>;
+  if(redirect) return <Redirect to="/users/4"/>;
       
   const btnStyle = {
     borderRadius: '20px', 

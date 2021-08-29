@@ -4,6 +4,7 @@ import CreateUser from './components/create-user';
 
 import Home from './components/home';
 import Login from './components/login';
+import Profile from './components/profile';
 import Signup from './components/signup';
 
 
@@ -40,9 +41,9 @@ const App= () => {
             />
 
             <Route 
-              path="/users/:id"
+              path="/users/:id/profile"
               exact
-             
+              component={Profile}
             />
 
             

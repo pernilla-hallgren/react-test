@@ -3,6 +3,34 @@ import { Card, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
 const NewUser = ({ id, name, job, createdAt }) => {
+  // let { id } = useParams();
+
+  // const [userData, setUserData] = useState([]);
+        // [error, setError] = useState(null);
+
+  // useEffect(() => {
+    
+  //   GET('users/id').then(response => {
+  //     console.log(response);
+  //     setUserData(response.data);
+  //   })
+  //   .catch(error => {
+  //       console.log(error.response.data);
+  //       // setError(error.response.data.error)
+  //     })
+
+  // }, []);
+
+ 
+
+  // const setData = (data) => {
+  //   const { name, job, id } = data;
+  //   localStorage.setItem('name', name);
+  //   localStorage.setItem('job', job);
+  //   localStorage.setItem('id', id);
+  // }
+
+  // console.log(setData)
 
   const cardStyle = {
     background: '#5D6475',
@@ -12,23 +40,14 @@ const NewUser = ({ id, name, job, createdAt }) => {
     boxShadow: '3px 3px 4px rgba(0, 0, 0, 0.25)',
   }
 
-  const textStyle = {
-    background: '#5D6475',
-    fontSize: '17px',
-    fontWeight: '300'
-  }
-
   return (
     <>
       <Col key={id} className="justify-content-center text-center">
         <Card style={cardStyle}>
             <Card.Body style={{ background: '#5D6475' }}>
-            <Card.Title style={{ marginTop: '10px', textTransform: 'uppercase' }}></Card.Title>
-              <Card.Text style={textStyle}>Welcome {name}</Card.Text>
-              <Card.Text style={textStyle}>Job: {job}</Card.Text>
-              <Card.Text style={textStyle}>Created: {createdAt}</Card.Text>
-              <Link style={{ background: 'none'}} to={`/users/${id}`}> 
-                <button className="small-btn mx-auto">Update User</button>
+            <Card.Title style={{ marginTop: '10px', textTransform: 'uppercase', background: 'none' }}>Success!</Card.Title>
+              <Link style={{ background: 'none'}} to={`/users/${id}/profile`}> 
+                <button className="small-btn mx-auto">Go To Profile</button>
               </Link>
             </Card.Body>
           </Card>
