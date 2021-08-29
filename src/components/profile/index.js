@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { PATCH } from '../services/requests';
 import Input from '../../shared/components/input';
 import Menu from '../menu';
 
@@ -9,7 +10,8 @@ const Profile = ({ id }) => {
   const [name, setName] = useState(""),
         [job, setJob] = useState(""),
         [createdAt, setCreatedAt] = useState(""),
-        [showUpdate, setShotUpdate] = useState(false);
+        [showUpdate, setShotUpdate] = useState(false),
+        [success, setSuccess] = useState(null);
         
   
   useEffect(() => {
@@ -28,6 +30,29 @@ const Profile = ({ id }) => {
 
   const getName = (e) => setName(e),
         getJob = (e) => setJob(e);
+
+      
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      name: name,
+      job: job,
+      id: id
+    };
+
+    PATCH(`users/${id}`, data)
+      .then((data) => {
+        console.log(data.data) // Börja här skapa ett stat som spara den nya uppdaterde infon  
+        setSuccess('Profile successfully updated!');
+        setShotUpdate(false);
+      })
+      .catch((error) => {
+        // setErrorDisplayName(error.response.data.error.display_name);
+        setSuccess(null);
+      });
+  }
+
+  console.log(success)
    
   const cardStyle = {
     background: '#5D6475',
@@ -90,7 +115,6 @@ const Profile = ({ id }) => {
                   id="job"
                 />
               </div>
-              
               <div className="form-group m-5">
                 <button type="submit" className="btn" style={btnStyle}>Save</button>
               </div>

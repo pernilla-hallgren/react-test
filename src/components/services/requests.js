@@ -23,12 +23,12 @@ export const POST = async (url, data) => {
   });
 }
 
-// export const PATCH = async (url, data) => {
-//   return axios(`${API_URL}/${url}`, {
-//     method: 'PATCH',
-//     data,
-//   });
-// }
+export const PATCH = async (url, data) => {
+  return axios(`${API_URL}/${url}`, {
+    method: 'PATCH',
+    data,
+  });
+}
 
 export const logout = () => {
     localStorage.removeItem('token');

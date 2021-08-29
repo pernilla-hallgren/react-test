@@ -10,7 +10,7 @@ const NewUser = ({ id, name, job, createdAt }) => {
 
   // useEffect(() => {
     
-  //   GET('users/id').then(response => {
+  //   GET(`users/${id}`).then(response => {
   //     console.log(response);
   //     setUserData(response.data);
   //   })
