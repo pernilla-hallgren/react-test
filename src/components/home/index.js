@@ -21,9 +21,9 @@ const Home = () => {
     GET('users?per_page=20').then(response => {
       console.log(response);
       setUserData(response.data);
-      const user = response.data.data
-      console.log(user);
-      localStorage.setItem('user', JSON.stringify(user));
+      // const user = response.data.data
+      // console.log(user);
+      // localStorage.setItem('user', JSON.stringify(user));
       // localStorage.setItem('email', response.data.data.email);
       // localStorage.setItem('first_name', response.data.data.first_name);
       // localStorage.setItem('last_name', response.data.data.last_name);
@@ -47,7 +47,7 @@ const Home = () => {
 
          <Container>
             <Row>
-                {userData ? userData.data.map((data) => (UserCard(data))) : <div>LOADING USERS</div>}
+                {userData ? userData.data.map((data) => (UserCard(data) )) : <div>LOADING USERS</div>}
             </Row>
           </Container>
     </>

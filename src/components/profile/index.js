@@ -1,43 +1,55 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 import { PATCH } from '../services/requests';
 import { Link } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import { GET } from '../services/requests';
 import Input from '../../shared/components/input';
 import Menu from '../menu';
 import UserCard from '../user-card';
 
-const Profile = ({ id }) => {
-  
+const Profile = () => {
+
+  let { id } = useParams();
+
   const [name, setName] = useState(""),
         [job, setJob] = useState(""),
         [createdAt, setCreatedAt] = useState(""),
         [userId, setUserId] = useState(""),
-        [showUpdate, setShowUpdate] = useState(false),   
+        [showUpdate, setShowUpdate] = useState(false), 
         [userData, setUserData] = useState([]);
         // [firstname, setFirstname] = useState(""),
         // [lastname, setLastname] = useState(""),  
         // [email, setEmail] = useState(""),
         // [avatar, setAvatar] = useState("");
  
-
   useEffect(() => {
-        setUserId(localStorage.getItem('id'));
-        setName(localStorage.getItem('name'));
-        setJob(localStorage.getItem('job'));
-        setCreatedAt(localStorage.getItem('createdAt'));
+    setUserId(localStorage.getItem('id'));
+    setName(localStorage.getItem('name'));
+    setJob(localStorage.getItem('job'));
+    setCreatedAt(localStorage.getItem('createdAt'));
 
-        setUserData(localStorage.getItem('user'));
-        // setFirstname(localStorage.getItem('first_name'));
-        // setLastname(localStorage.getItem('last_name'));
-        // setEmail(localStorage.getItem('email'));
-        // setAvatar(localStorage.getItem('avatar'));
-  }, []);
+    GET(`users/${id}`).then(response => {
+      console.log(response);
+      setUserData(response.data.data);
+
+      // const user = response.data.data
+      // console.log(user);
+      // localStorage.setItem('user', JSON.stringify(user));
+      // localStorage.setItem('email', response.data.data.email);
+      // localStorage.setItem('first_name', response.data.data.first_name);
+      // localStorage.setItem('last_name', response.data.data.last_name);
+      // localStorage.setItem('avatar', response.data.data.avatar);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, [id]);
+
+  console.log(userData)
 
   const showForm = () => {
     setShowUpdate(true);
   };
-
-  console.log(userData)
 
 
   const getName = (e) => setName(e),
@@ -82,6 +94,12 @@ const Profile = ({ id }) => {
     border: '0', 
     color: 'white'
   };
+
+  const cardImgStyle = {
+    border: '1px solid',
+    borderRadius: '50%',
+    padding: '7px',
+  }
   
   return (
     <div>
@@ -90,7 +108,7 @@ const Profile = ({ id }) => {
         <h2>PROFILE PAGE</h2>
       </div>
 
-      {userData && (
+      {/* {userData && (
         <Container>
             <Row>
                 {userData ? userData.map(data => ( 
@@ -104,19 +122,34 @@ const Profile = ({ id }) => {
             </Row>
       </Container>
 
-      )}
-
-      {/* {firstname && (
+      )}  */}
+      {/* {userData && (
       <div className="container">
         <UserCard 
-          first_name={firstname} 
-          last_name={lastname} 
+          first_name={first_name} 
+          last_name={last_name} 
           email={email} 
           avatar={avatar}
+          id={id}
         />
       </div>
-      )} */}
-
+      )}   */}
+      {userData && (
+        <div className="container justify-content-center">
+          <Row>
+            <Col key={id} className="text-center">
+              <Card style={cardStyle}>
+                <Card.Img style={cardImgStyle} variant="top" src={userData.avatar} />
+                <Card.Body style={{ background: '#5D6475' }}>
+                  <Card.Text style={textStyle}>First name: {userData.first_name}</Card.Text>
+                  <Card.Text style={textStyle}>Last name: {userData.last_name}</Card.Text>
+                  <Card.Text style={textStyle}>Email: {userData.email}</Card.Text>            
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      )}
       {userId && (
         <div className="container justify-content-center">
           <h3 className="text-center mt-4">Welcome {name}</h3>

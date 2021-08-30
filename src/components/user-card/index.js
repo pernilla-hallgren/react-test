@@ -28,7 +28,7 @@ export default function UserCard(data) {
 
   return (
     <>
-      <Col key={id} sm="12" className="justify-content-center text-center">
+      <Col key={id} sm="12" md="6" lg="4" className="justify-content-center text-center">
         <Card style={cardStyle}>
           <Card.Body style={{ background: '#5D6475' }}>
             <Card.Img style={cardImgStyle} variant="top" src={avatar} />

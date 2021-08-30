@@ -36,7 +36,7 @@ const Login = () => {
       })
   };
 
-  if(redirect) return <Redirect to="/"/>;
+  if(redirect) return <Redirect to="users/4/profile"/>;
       
   const btnStyle = {
     borderRadius: '20px', 
