@@ -28,19 +28,22 @@ export default function UserCard(data) {
 
   return (
     <>
-      <Col key={id} sm="12" md="6" lg="4" className="justify-content-center text-center">
+      <Col key={id} sm="12" className="justify-content-center text-center">
         <Card style={cardStyle}>
-            <Card.Body style={{ background: '#5D6475' }}>
-              <Card.Img style={cardImgStyle} variant="top" src={avatar} />
-              <Card.Text style={textStyle}>First name: {first_name}</Card.Text>
-              <Card.Text style={textStyle}>Last name: {last_name}</Card.Text>
-              <Card.Text style={textStyle}>Email: {email}</Card.Text>
-              <Link style={{ background: 'none'}} to={`/users/${id}`}> 
-                <button className="small-btn mx-auto">Update Profile</button>
-              </Link>
-            </Card.Body>
-          </Card>
-        </Col>
+          <Card.Body style={{ background: '#5D6475' }}>
+            <Card.Img style={cardImgStyle} variant="top" src={avatar} />
+            <Card.Text style={textStyle}>First name: {first_name}</Card.Text>
+            <Card.Text style={textStyle}>Last name: {last_name}</Card.Text>
+            <Card.Text style={textStyle}>Email: {email}</Card.Text>
+            {id && (
+            <Link style={{ background: 'none'}} to={`/users/${id}/profile`}> 
+              <button className="small-btn mx-auto">Show Profile</button>
+            </Link>
+
+            )}
+          </Card.Body>
+        </Card>
+      </Col>
     </>
   )
 }

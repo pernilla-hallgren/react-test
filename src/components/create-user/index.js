@@ -88,13 +88,13 @@ const CreateUser = () => {
 
             {userTrue && newUser ? (
               
-              <NewUser 
-                name={newUser.name}
-                job={newUser.job}
-                createdAt={newUser.createdAt}
-                id={newUser.id}
-              />
-          ) : (
+            <NewUser 
+              name={newUser.name}
+              job={newUser.job}
+              createdAt={newUser.createdAt}
+              id={newUser.id}
+            />
+            ) : (
             <>
             </>
           )}

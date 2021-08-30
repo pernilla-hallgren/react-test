@@ -1,37 +1,41 @@
 import React, { useState } from 'react';
 import { POST } from '../services/requests';
+import { Redirect } from 'react-router-dom';
 import Menu from '../menu';
 import Input from '../../shared/components/input';
 import ErrorMessage from '../../shared/components/error-message';
 
-const Signup = () => {
+const Signup = ({ id }) => {
 
   const [email, setEmail] = useState(""),
-        [pwd, setPwd] = useState(''),
-        [errorEmail, setErrorEmail] = useState(null),
-        [errorPwd, setErrorPwd] = useState(null);
+        [password, setPassword] = useState(''),
+        [error, setError] = useState(null),
+        [redirect, setRedirect] = useState(false);
   
   const getEmail = (e) => setEmail(e),
-        getPwd = (e) => setPwd(e);
+        getPassword = (e) => setPassword(e);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       email: email,
-      password: pwd,
+      password: password,
     };
 
     POST('register', data)
       .then(data => {
         console.log(data)
-        localStorage.setItem('id', data.data.id);
-        localStorage.setItem('token', data.data.token);
+        setRedirect(true);
+        localStorage.setItem('id', JSON.stringify(data.data.id));
+        localStorage.setItem('token', JSON.stringify(data.data.token));
       })
       .catch(error => {
-        setErrorEmail(error.response.data.error.email);
-        setErrorPwd(error.response.data.error.password)
+        console.log(error.response.data);
+        setError(error.response.data.error);
       })
-  }
+  };
+
+  if(redirect) return <Redirect to={`/users/${id}/profile`}/>;
 
   const btnStyle = {
     borderRadius: '20px', 
@@ -51,7 +55,9 @@ const Signup = () => {
 
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
           <div className="form-group">
-            {errorEmail && <ErrorMessage message={errorEmail}/>}
+
+            {!email && error && <ErrorMessage message={error} />}
+
             <Input 
               name="email"
               type="text"
@@ -61,13 +67,15 @@ const Signup = () => {
             />
           </div>
           <div className="form-group">
-            {setErrorPwd && <ErrorMessage message={errorPwd}/>}
+            
+            {!password && error && <ErrorMessage message={error} />}
+
             <Input 
               name="password"
               type="text"
-              getState={getPwd}
+              getState={getPassword}
               placeholder="Password"
-              id="pwd"
+              id="password"
             />
 
           {/* <div className="form-group">

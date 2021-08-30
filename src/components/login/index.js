@@ -5,7 +5,7 @@ import Menu from '../menu';
 import Input from '../../shared/components/input';
 import ErrorMessage from '../../shared/components/error-message';
 
-const Login = ({ getToken }) => {
+const Login = () => {
 
   const [email, setEmail] = useState(""),
         [password, setPassword] = useState(''),
@@ -27,7 +27,7 @@ const Login = ({ getToken }) => {
         console.log(data)
         setRedirect(true);
         localStorage.setItem('token', JSON.stringify(data.data.token));
-
+        // localStorage.setItem('token', JSON.stringify(data.data.id));
         // getToken(localStorage.getItem('token'))
       })
       .catch(error => {
@@ -36,7 +36,7 @@ const Login = ({ getToken }) => {
       })
   };
 
-  if(redirect) return <Redirect to="/users/4"/>;
+  if(redirect) return <Redirect to="/"/>;
       
   const btnStyle = {
     borderRadius: '20px', 

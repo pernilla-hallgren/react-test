@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { getCurrentUser, logout } from '../services/requests';
+import { getCurrentUser, logout, getCurrentCreatedUser } from '../services/requests';
 
 const Menu = () => {
 
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(undefined),
+        [createdCurrentUser, setCurrentCreatedUser] = useState(false);
 
   useEffect(() => {
     const user = getCurrentUser();
+    const createdUser = getCurrentCreatedUser();
 
     if (user) {
       setCurrentUser(user);
     }
+    if (createdUser) {
+      setCurrentCreatedUser(createdUser);
+    }
   }, []);
+  console.log(createdCurrentUser);
+  
+  const name = currentUser || createdCurrentUser;
 
   const logOut = () => {
     logout();
@@ -36,11 +44,11 @@ const Menu = () => {
         <Navbar.Collapse style={color}  id="navbar-toggle">
           <Nav className="me-auto">
 
-            {currentUser && (
-              <NavLink style={color} to="/profile">Profile</NavLink>
+            {name && (
+              <NavLink style={color} to="/users/:id/profile">Profile</NavLink>
             )}
 
-            {currentUser ? (
+            {name ? (
               <>
                 <NavLink style={color} to="/" onClick={logOut}>Logout</NavLink>
               </>

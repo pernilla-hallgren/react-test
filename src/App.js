@@ -46,6 +46,12 @@ const App= () => {
               component={Profile}
             />
 
+            <Route 
+              path="/users/:id"
+              exact
+              component={Profile}
+            />
+
             
           </Switch>
         </main>

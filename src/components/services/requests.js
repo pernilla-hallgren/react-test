@@ -32,9 +32,14 @@ export const PATCH = async (url, data) => {
 
 export const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
     window.location.reload('/'); // kan göras bättre
   };
 
 export const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem('token'));
+  };
+
+export const getCurrentCreatedUser = () => {
+    return JSON.parse(localStorage.getItem('id'));
   };

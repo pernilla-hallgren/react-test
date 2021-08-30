@@ -2,35 +2,8 @@ import React from 'react';
 import { Card, Col } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
-const NewUser = ({ id, name, job, createdAt }) => {
-  // let { id } = useParams();
+const NewUser = ({ id }) => {
 
-  // const [userData, setUserData] = useState([]);
-        // [error, setError] = useState(null);
-
-  // useEffect(() => {
-    
-  //   GET(`users/${id}`).then(response => {
-  //     console.log(response);
-  //     setUserData(response.data);
-  //   })
-  //   .catch(error => {
-  //       console.log(error.response.data);
-  //       // setError(error.response.data.error)
-  //     })
-
-  // }, []);
-
- 
-
-  // const setData = (data) => {
-  //   const { name, job, id } = data;
-  //   localStorage.setItem('name', name);
-  //   localStorage.setItem('job', job);
-  //   localStorage.setItem('id', id);
-  // }
-
-  // console.log(setData)
 
   const cardStyle = {
     background: '#5D6475',
@@ -42,6 +15,7 @@ const NewUser = ({ id, name, job, createdAt }) => {
 
   return (
     <>
+
       <Col key={id} className="justify-content-center text-center">
         <Card style={cardStyle}>
             <Card.Body style={{ background: '#5D6475' }}>
