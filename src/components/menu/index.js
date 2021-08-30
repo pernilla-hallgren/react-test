@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { getCurrentUser, logout, getCurrentCreatedUser } from '../services/requests';
 
 const Menu = () => {
+
+  let history = useHistory()
 
   const [currentUser, setCurrentUser] = useState(undefined),
         [createdCurrentUser, setCurrentCreatedUser] = useState(false);
@@ -23,8 +25,13 @@ const Menu = () => {
   
   const name = currentUser || createdCurrentUser;
 
-  const logOut = () => {
-    logout();
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('name');
+    localStorage.removeItem('job');
+    localStorage.removeItem('createdAt');
+    history.push('/');
   };
 
   const color = {
@@ -50,7 +57,7 @@ const Menu = () => {
 
             {name ? (
               <>
-                <NavLink style={color} to="/" onClick={logOut}>Logout</NavLink>
+                <NavLink style={color} to="/" onClick={handleLogOut}>Logout</NavLink>
               </>
             ) : (
               <>

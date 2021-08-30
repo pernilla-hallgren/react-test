@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CreateUser from './components/create-user';
-
+import { logout, getCurrentUser } from './components/services/requests'
 import Home from './components/home';
 import Login from './components/login';
 import Profile from './components/profile';
