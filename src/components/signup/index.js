@@ -35,7 +35,7 @@ const Signup = ({ id }) => {
       })
   };
 
-  if(redirect) return <Redirect to={`/users/${id}/profile`}/>;
+  if(redirect) return <Redirect to="users/4/profile"/>;
 
   const btnStyle = {
     borderRadius: '20px', 

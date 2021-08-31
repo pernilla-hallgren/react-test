@@ -25,6 +25,7 @@ const CreateUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setUserTrue(true);
+
     const data = {
       name: name,
       job: job,

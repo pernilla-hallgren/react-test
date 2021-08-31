@@ -39,17 +39,17 @@ const Home = () => {
   return (
     <>
       <Menu />
-        <div  className="m-3 text-center">
-          <Link to="/create-user">
-              <button className="btn" style={btnStyle}>Create User</button>
-          </Link>
-        </div>
+      <div  className="m-3 text-center">
+        <Link to="/create-user">
+            <button className="btn" style={btnStyle}>Create User</button>
+        </Link>
+      </div>
 
-         <Container>
-            <Row>
-                {userData ? userData.data.map((data) => (UserCard(data) )) : <div>LOADING USERS</div>}
-            </Row>
-          </Container>
+      <Container>
+        <Row>
+            {userData ? userData.data.map((data) => (UserCard(data) )) : <div>LOADING USERS</div>}
+        </Row>
+      </Container>
     </>
   )
 };

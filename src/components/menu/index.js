@@ -61,6 +61,7 @@ const Menu = () => {
               </>
             ) : (
               <>
+                <NavLink style={color} to="/">Home</NavLink>
                 <NavLink style={color} to="/sign-up">Sign Up</NavLink>
                 <NavLink style={color} to="/login">Login</NavLink>
               </>

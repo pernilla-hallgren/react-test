@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap';
-import { PATCH } from '../services/requests';
-import { Link } from 'react-router-dom';
+import { PATCH, GET } from '../services/requests';
 import { useParams } from "react-router-dom";
-import { GET } from '../services/requests';
 import Input from '../../shared/components/input';
 import Menu from '../menu';
-import UserCard from '../user-card';
 
 const Profile = () => {
 
@@ -17,11 +14,9 @@ const Profile = () => {
         [createdAt, setCreatedAt] = useState(""),
         [userId, setUserId] = useState(""),
         [showUpdate, setShowUpdate] = useState(false), 
-        [userData, setUserData] = useState([]);
-        // [firstname, setFirstname] = useState(""),
-        // [lastname, setLastname] = useState(""),  
-        // [email, setEmail] = useState(""),
-        // [avatar, setAvatar] = useState("");
+        [showUser, setShowUser] = useState(false),
+        [userData, setUserData] = useState([]),
+        [error, setError] = useState(null);
  
   useEffect(() => {
     setUserId(localStorage.getItem('id'));
@@ -30,18 +25,14 @@ const Profile = () => {
     setCreatedAt(localStorage.getItem('createdAt'));
 
     GET(`users/${id}`).then(response => {
-      console.log(response);
       setUserData(response.data.data);
-
-      // const user = response.data.data
-      // console.log(user);
-      // localStorage.setItem('user', JSON.stringify(user));
-      // localStorage.setItem('email', response.data.data.email);
-      // localStorage.setItem('first_name', response.data.data.first_name);
-      // localStorage.setItem('last_name', response.data.data.last_name);
-      // localStorage.setItem('avatar', response.data.data.avatar);
-    }).catch((error) => {
-      console.log(error);
+      if(userData) {
+        setShowUser(true);
+      }
+    })
+    .catch((error) => {
+      console.log(error.response.status)
+      setError(error.response.status);
     });
   }, [id]);
 
@@ -50,7 +41,6 @@ const Profile = () => {
   const showForm = () => {
     setShowUpdate(true);
   };
-
 
   const getName = (e) => setName(e),
         getJob = (e) => setJob(e);
@@ -108,33 +98,7 @@ const Profile = () => {
         <h2>PROFILE PAGE</h2>
       </div>
 
-      {/* {userData && (
-        <Container>
-            <Row>
-                {userData ? userData.map(data => ( 
-                  <UserCard 
-                    first_name={data.firstname} 
-                    last_name={data.lastname} 
-                    email={data.email} 
-                    avatar={data.avatar}
-                  />
-                  )) : <div>LOADING USER PROFILE</div>}
-            </Row>
-      </Container>
-
-      )}  */}
-      {/* {userData && (
-      <div className="container">
-        <UserCard 
-          first_name={first_name} 
-          last_name={last_name} 
-          email={email} 
-          avatar={avatar}
-          id={id}
-        />
-      </div>
-      )}   */}
-      {userData && (
+      {showUser && (
         <div className="container justify-content-center">
           <Row>
             <Col key={id} className="text-center">
@@ -150,7 +114,8 @@ const Profile = () => {
           </Row>
         </div>
       )}
-      {userId && (
+      
+      {userId === id && (
         <div className="container justify-content-center">
           <h3 className="text-center mt-4">Welcome {name}</h3>
           <Row>

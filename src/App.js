@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CreateUser from './components/create-user';
-import { logout, getCurrentUser } from './components/services/requests'
 import Home from './components/home';
 import Login from './components/login';
 import Profile from './components/profile';
 import Signup from './components/signup';
-
 
 const App= () => {
 
@@ -50,9 +48,7 @@ const App= () => {
               path="/users/:id"
               exact
               component={Profile}
-            />
-
-            
+            />            
           </Switch>
         </main>
       </Router>
