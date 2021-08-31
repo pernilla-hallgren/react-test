@@ -28,6 +28,7 @@ const Signup = ({ id }) => {
         setRedirect(true);
         localStorage.setItem('id', JSON.stringify(data.data.id));
         localStorage.setItem('token', JSON.stringify(data.data.token));
+        window.location.reload();
       })
       .catch(error => {
         console.log(error.response.data);

@@ -22,31 +22,26 @@ const App= () => {
 
             <Route 
               path="/sign-up"
-              exact
               component={Signup}
             />
 
             <Route 
               path="/login"
-              exact
               component={Login}
             />
 
             <Route 
               path="/create-user"
-              exact
               component={CreateUser}
             />
 
             <Route 
               path="/users/:id/profile"
-              exact
               component={Profile}
             />
 
             <Route 
               path="/users/:id"
-              exact
               component={Profile}
             />            
           </Switch>

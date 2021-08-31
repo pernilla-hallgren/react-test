@@ -27,6 +27,7 @@ const Login = () => {
         console.log(data)
         setRedirect(true);
         localStorage.setItem('token', JSON.stringify(data.data.token));
+        window.location.reload();
         // localStorage.setItem('token', JSON.stringify(data.data.id));
         // getToken(localStorage.getItem('token'))
       })

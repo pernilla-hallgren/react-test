@@ -39,7 +39,6 @@ export default function UserCard(data) {
             <Link style={{ background: 'none'}} to={`/users/${id}/profile`}> 
               <button className="small-btn mx-auto">Show Profile</button>
             </Link>
-
             )}
           </Card.Body>
         </Card>

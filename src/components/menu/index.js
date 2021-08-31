@@ -1,29 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink, useHistory } from 'react-router-dom';
-import { getCurrentUser, logout, getCurrentCreatedUser } from '../services/requests';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { getCurrentUser, getCurrentCreatedUser } from '../services/requests';
 
 const Menu = () => {
 
   let history = useHistory()
+  let { id } = useParams();
 
   const [currentUser, setCurrentUser] = useState(undefined),
-        [createdCurrentUser, setCurrentCreatedUser] = useState(false);
+        [createdCurrentUser, setCurrentCreatedUser] = useState(false),
+        [isAuthCreatedUser, setIsAuthCreatedUser] = useState(JSON.parse(localStorage.getItem('id'))),
+        [isAuth, setIsAuth] = useState(JSON.parse(localStorage.getItem('token')));
 
-  useEffect(() => {
-    const user = getCurrentUser();
-    const createdUser = getCurrentCreatedUser();
+  console.log(isAuth)
 
-    if (user) {
-      setCurrentUser(user);
-    }
-    if (createdUser) {
-      setCurrentCreatedUser(createdUser);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isAuth && isAuthCreatedUser ) {
+  //     const user = setIsAuth();
+  //     const createdUser = setIsAuthCreatedUser();
+
+  //   // if (user) {
+  //   //   setCurrentUser(user);
+  //   // } else {
+  //   //   setIsAuth(null)
+  //   // }
+  //   // if (createdUser) {
+  //   //   setCurrentCreatedUser(createdUser);
+  //   // } 
+
+  //   } else {
+  //     setIsAuth(null);
+  //     setCurrentCreatedUser(null);
+
+  //   }
+  // }, [isAuth]);
+  // useEffect(() => {
+  //   const user = getCurrentUser();
+  //   const createdUser = getCurrentCreatedUser();
+
+  //   if (user) {
+  //     setCurrentUser(user);
+  //   } 
+  //   if (createdUser) {
+  //     setCurrentCreatedUser(createdUser);
+  //   }
+  // }, []);
+
   console.log(createdCurrentUser);
   
-  const name = currentUser || createdCurrentUser;
+  const authUser = isAuth || isAuthCreatedUser;
 
   const handleLogOut = () => {
     localStorage.removeItem('token');
@@ -51,11 +77,11 @@ const Menu = () => {
         <Navbar.Collapse style={color}  id="navbar-toggle">
           <Nav className="me-auto">
 
-            {name && (
-              <NavLink style={color} to="/users/:id/profile">Profile</NavLink>
+            {authUser &&  (
+              <NavLink style={color} to={`/users/${id}/profile`}>Profile</NavLink>
             )}
 
-            {name ? (
+            {authUser ? (
               <>
                 <NavLink style={color} to="/" onClick={handleLogOut}>Logout</NavLink>
               </>
