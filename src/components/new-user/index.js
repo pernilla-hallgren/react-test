@@ -10,7 +10,7 @@ const NewUser = ({ id }) => {
     margin: '15px', 
     borderRadius: '20px',
     boxShadow: '3px 3px 4px rgba(0, 0, 0, 0.25)',
-  }
+  };
 
   return (
     <>
@@ -26,7 +26,7 @@ const NewUser = ({ id }) => {
       </Col>
     </>
   )
-}
+};
 
 export default NewUser;
 

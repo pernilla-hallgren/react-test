@@ -24,12 +24,9 @@ const Login = () => {
 
     POST('login', data)
       .then(data => {
-        console.log(data)
         setRedirect(true);
         localStorage.setItem('token', JSON.stringify(data.data.token));
         window.location.reload();
-        // localStorage.setItem('token', JSON.stringify(data.data.id));
-        // getToken(localStorage.getItem('token'))
       })
       .catch(error => {
         console.log(error.response.data);
@@ -43,7 +40,7 @@ const Login = () => {
     borderRadius: '20px', 
     border: '0', 
     color: 'white'
-  }
+  };
 
   return (
     <>
@@ -55,7 +52,6 @@ const Login = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
-
 
           {!email && error && <ErrorMessage message={error} />}
 
@@ -73,7 +69,6 @@ const Login = () => {
           {!password && error && <ErrorMessage message={error} />}
 
           <div className="form-group">
-
             <Input 
               name="password"
               type="text"

@@ -15,8 +15,7 @@ const Profile = () => {
         [userId, setUserId] = useState(""),
         [showUpdate, setShowUpdate] = useState(false), 
         [showUser, setShowUser] = useState(false),
-        [userData, setUserData] = useState([]),
-        [error, setError] = useState(null);
+        [userData, setUserData] = useState([]);
  
   useEffect(() => {
     setUserId(localStorage.getItem('id'));
@@ -26,17 +25,12 @@ const Profile = () => {
 
     GET(`users/${id}`).then(response => {
       setUserData(response.data.data);
-      if(userData) {
-        setShowUser(true);
-      }
+      setShowUser(true);
     })
     .catch((error) => {
       console.log(error.response.status)
-      setError(error.response.status);
     });
   }, [id]);
-
-  console.log(userData)
 
   const showForm = () => {
     setShowUpdate(true);
@@ -56,7 +50,6 @@ const Profile = () => {
 
     PATCH(`users/${id}`, data)
       .then((data) => {
-        console.log(data.data) 
         setShowUpdate(false);
       })
       .catch((error) => {
@@ -89,7 +82,7 @@ const Profile = () => {
     border: '1px solid',
     borderRadius: '50%',
     padding: '7px',
-  }
+  };
   
   return (
     <div>
@@ -114,7 +107,7 @@ const Profile = () => {
           </Row>
         </div>
       )}
-      
+
       {userId === id && (
         <div className="container justify-content-center">
           <h3 className="text-center mt-4">Welcome {name}</h3>

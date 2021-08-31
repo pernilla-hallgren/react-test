@@ -12,7 +12,6 @@ const App= () => {
     <>
       <Router>
         <main>
-
           <Switch>
             <Route 
               path="/"
@@ -38,12 +37,7 @@ const App= () => {
             <Route 
               path="/users/:id/profile"
               component={Profile}
-            />
-
-            <Route 
-              path="/users/:id"
-              component={Profile}
-            />            
+            />           
           </Switch>
         </main>
       </Router>

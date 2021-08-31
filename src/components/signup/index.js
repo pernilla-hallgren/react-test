@@ -5,7 +5,7 @@ import Menu from '../menu';
 import Input from '../../shared/components/input';
 import ErrorMessage from '../../shared/components/error-message';
 
-const Signup = ({ id }) => {
+const Signup = () => {
 
   const [email, setEmail] = useState(""),
         [password, setPassword] = useState(''),
@@ -24,14 +24,12 @@ const Signup = ({ id }) => {
 
     POST('register', data)
       .then(data => {
-        console.log(data)
         setRedirect(true);
         localStorage.setItem('id', JSON.stringify(data.data.id));
         localStorage.setItem('token', JSON.stringify(data.data.token));
         window.location.reload();
       })
       .catch(error => {
-        console.log(error.response.data);
         setError(error.response.data.error);
       })
   };
@@ -42,7 +40,7 @@ const Signup = ({ id }) => {
     borderRadius: '20px', 
     border: '0', 
     color: 'white'
-  }
+  };
 
   return (
     <>
@@ -52,7 +50,6 @@ const Signup = ({ id }) => {
           <h2>SIGN-UP NOW</h2>
           <p>Please fill in your details and create an account</p>
         </div>
-
 
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
           <div className="form-group">
@@ -78,16 +75,6 @@ const Signup = ({ id }) => {
               placeholder="Password"
               id="password"
             />
-
-          {/* <div className="form-group">
-            <Input 
-              name="pwdConf"
-              type="text"
-              getState={getPwdConf}
-              placeholder="Password Confirmation"
-              id="pwd-conf"
-            />
-          </div> */}
             <div className="form-group m-5">
                 <button type="submit" className="btn" style={btnStyle}>Sign Up</button>
             </div>

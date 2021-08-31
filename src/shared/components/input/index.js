@@ -8,7 +8,6 @@ const Input = ({ placeholder, type, name, getState, id }) => {
     getState(input);
   };
 
-
   return (
     <>
       <input
@@ -22,7 +21,7 @@ const Input = ({ placeholder, type, name, getState, id }) => {
         className="input-field"
       />
     </>
-  );
+  )
 };
 
 export default Input;

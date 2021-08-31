@@ -11,7 +11,7 @@ const CreateUser = () => {
     borderRadius: '20px', 
     border: '0', 
     color: 'white'
-  }
+  };
   
   const [name, setName] = useState(""),
         [job, setJob] = useState(""),
@@ -33,19 +33,16 @@ const CreateUser = () => {
 
     POST('users', data)
       .then(data => {
-        console.log(data)
-        setNewUser(data.data)
+        setNewUser(data.data);
         localStorage.setItem('name', (data.data.name));
         localStorage.setItem('job', (data.data.job));
         localStorage.setItem('id', (data.data.id));
         localStorage.setItem('createdAt', (data.data.createdAt));
       })
       .catch(error => {
-        console.log(error.response.data);
-        setError(error.response.data.error)
+        setError(error.response.data.error);
       })
-  }
-  console.log(newUser);
+  };
 
   return (
     <>
@@ -55,8 +52,6 @@ const CreateUser = () => {
           <h2>CREATE USER</h2>
           <p>Please fill in your details to create a user</p>
         </div>
-
-
         <form onSubmit={handleSubmit} className="mb-5 mt-4">
 
           {!name && error && <ErrorMessage message={error} />}
@@ -69,7 +64,6 @@ const CreateUser = () => {
               placeholder="Enter Name"
               id="name"
             />
-            
           </div>
 
           {!job && error && <ErrorMessage message={error} />}
@@ -99,7 +93,6 @@ const CreateUser = () => {
             <>
             </>
           )}
-          
           </div>
         </form>
       </div>

@@ -1,53 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { getCurrentUser, getCurrentCreatedUser } from '../services/requests';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 
 const Menu = () => {
 
-  let history = useHistory()
   let { id } = useParams();
+  let history = useHistory();
 
-  const [currentUser, setCurrentUser] = useState(undefined),
-        [createdCurrentUser, setCurrentCreatedUser] = useState(false),
-        [isAuthCreatedUser, setIsAuthCreatedUser] = useState(JSON.parse(localStorage.getItem('id'))),
+  const [isAuthCreatedUser, setIsAuthCreatedUser] = useState(JSON.parse(localStorage.getItem('id'))),
         [isAuth, setIsAuth] = useState(JSON.parse(localStorage.getItem('token')));
 
-  console.log(isAuth)
-
-  // useEffect(() => {
-  //   if (isAuth && isAuthCreatedUser ) {
-  //     const user = setIsAuth();
-  //     const createdUser = setIsAuthCreatedUser();
-
-  //   // if (user) {
-  //   //   setCurrentUser(user);
-  //   // } else {
-  //   //   setIsAuth(null)
-  //   // }
-  //   // if (createdUser) {
-  //   //   setCurrentCreatedUser(createdUser);
-  //   // } 
-
-  //   } else {
-  //     setIsAuth(null);
-  //     setCurrentCreatedUser(null);
-
-  //   }
-  // }, [isAuth]);
-  // useEffect(() => {
-  //   const user = getCurrentUser();
-  //   const createdUser = getCurrentCreatedUser();
-
-  //   if (user) {
-  //     setCurrentUser(user);
-  //   } 
-  //   if (createdUser) {
-  //     setCurrentCreatedUser(createdUser);
-  //   }
-  // }, []);
-
-  console.log(createdCurrentUser);
+  useEffect(() => {
+    if (!isAuth && !isAuthCreatedUser ) {
+      setIsAuth(null);
+      setIsAuthCreatedUser(null);
+    } 
+  }, [isAuth, isAuthCreatedUser]);
   
   const authUser = isAuth || isAuthCreatedUser;
 
@@ -58,6 +26,7 @@ const Menu = () => {
     localStorage.removeItem('job');
     localStorage.removeItem('createdAt');
     history.push('/');
+    window.location.reload();
   };
 
   const color = {
@@ -67,7 +36,7 @@ const Menu = () => {
     background: '#283041',
     textDecoration: 'none',
     color: '#CECFD3',
-  }
+  };
 
   return (
     <>
@@ -92,7 +61,6 @@ const Menu = () => {
                 <NavLink style={color} to="/login">Login</NavLink>
               </>
             )} 
-            
           </Nav>
         </Navbar.Collapse>     
       </Navbar>

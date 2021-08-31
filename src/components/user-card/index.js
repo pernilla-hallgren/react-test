@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function UserCard(data) {
 
-  const { id, first_name, last_name, email, avatar } = data
+  const { id, first_name, last_name, email, avatar } = data;
 
   const cardStyle = {
     background: '#5D6475',
@@ -12,19 +12,19 @@ export default function UserCard(data) {
     margin: '15px', 
     borderRadius: '20px',
     boxShadow: '3px 3px 4px rgba(0, 0, 0, 0.25)',
-  }
+  };
 
   const cardImgStyle = {
     border: '1px solid',
     borderRadius: '50%',
     padding: '7px',
-  }
+  };
 
   const textStyle = {
     background: '#5D6475',
     fontSize: '17px',
     fontWeight: '300',
-  }
+  };
 
   return (
     <>
@@ -45,4 +45,4 @@ export default function UserCard(data) {
       </Col>
     </>
   )
-}
+};
