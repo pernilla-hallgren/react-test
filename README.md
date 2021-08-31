@@ -16,18 +16,17 @@
                 <li><a href="#installation">Installation</a></li>
             </ul>
    </li>
-    <!-- <li><a href="#page-and-route-descriptions">Page And Route Descriptions</a></li>
-    <li><a href="#license">License</a></li> -->
   </ol>
 </details>
 
 ## About The Project
 
+Creating CRUD operations to the public API: http://reqres.in/
+
 ### Built With
 
 - [React](https://reactjs.org/)
 - [Bootstrap](https://getbootstrap.com/)
-- [Redux](https://redux.js.org/)
 
 <!-- GETTING STARTED -->
 
